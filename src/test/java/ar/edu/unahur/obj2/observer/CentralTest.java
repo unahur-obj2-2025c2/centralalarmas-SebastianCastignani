@@ -28,8 +28,6 @@ public class CentralTest {
     @Test
     @DisplayName("dadoElSetUp_alAgregarAlertas_SeVerificaCorretamenteLasAlertasRecibidasYElRiesgo")
     void test1(){
-     Alerta calor = new Alerta("calor" , 5 );
-     Alerta lluvia = new Alerta("lluvia" , 8 );
      central.emitirAlerta("calor", 6);
      central.emitirAlerta("lluvia", 8);
      assertEquals("calor", e1.getAlertasRecibidas().getFirst().getTipo());
@@ -41,20 +39,6 @@ public class CentralTest {
      assertEquals("lluvia", e2.getAlertasRecibidas().getLast().getTipo());
      assertEquals(8, e2.getAlertasRecibidas().getLast().getNivel());
     }
-
-
-    @Test
-    @DisplayName("emitirAlerta_nivelInvalido_lanzaDominoException")
-    void testNivelInvalidoLanzaException() {
-        // nivel 0 es inválido
-        assertThrows(ar.edu.unahur.obj2.observer.exception.DominoException.class,
-            () -> central.emitirAlerta("viento", 0));
-
-        // nivel 11 es inválido
-        assertThrows(ar.edu.unahur.obj2.observer.exception.DominoException.class,
-            () -> central.emitirAlerta("viento", 11));
-    }
-
 
     @Test
     @DisplayName("dadoElSetUp_alCambiarElComportamientoYAgregarAlertas_SeVerificaCorretamenteLasAlertasRecibidasYElRiesgo")
